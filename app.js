@@ -8,6 +8,8 @@ var http = require('http'),
 var app = http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(index);
+    var path = url.parse(req.url).pathname;
+    conesole.log('a request was received for: ' + path);
 });
 
 // Socket.io server listens to our app
