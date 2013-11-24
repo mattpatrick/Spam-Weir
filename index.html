@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
     <head>
-        
+
+
         <script>
-            var socket = io.connect('ec2-54-200-254-10.us-west-2.compute.amazonaws.com:8080');
+            var socket = io.connect('http://ec2-54-200-254-10.us-west-2.compute.amazonaws.com:8080');
 
             socket.on('welcome', function(data) {
                 $('#messages').append('<li>' + data.message + '</li>');

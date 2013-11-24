@@ -18,9 +18,9 @@ function sendTime() {
     io.sockets.emit('time', { time: new Date().toJSON() });
 }
 
-// This function sends a pystmark request
+// This works
 function sendEmail() {
-	var postmark = require("postmark")("1ec2a3f4-3601-4792-b9dc-a1bbeb6258c5");
+    var postmark = require("postmark")("1ec2a3f4-3601-4792-b9dc-a1bbeb6258c5");
     postmark.send({
         "From": "info@spamweir.com", 
         "To": "matthewleepatrick@gmail.com", 
@@ -36,20 +36,33 @@ function sendEmail() {
     });
 }
 
+// This works
 function venmoRequest(){
 
-var request = require("request");
+    var request = require("request");
  
-	request({
-	  uri: "https://sandbox-api.venmo.com/payments",
-	  method: "POST",
-	  form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
-	  }
-	}, function(error, response, body) {
-	  console.log(body);
-	});
+    request({
+      uri: "https://sandbox-api.venmo.com/payments",
+      method: "POST",
+      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
+      }
+    }, function(error, response, body) {
+      console.log(body);
+    });
 
 }
+
+// This is not working yet
+function sendhubRequest(){
+
+SENDHUB_API_KEY = '9e893891e0de6a833c06a5b5d9a2b3b5a08e103c' 
+sendHubPostUrl = 'https://api.sendhub.com/v1/messages/?username=7652129586&api_key='+SENDHUB_API_KEY
+headers = {'Content-type': 'application/json'}
+
+    // # send = requests.post(sendHubPostUrl,data=data,headers=headers)    
+
+}
+
 
 // Send current time every 10 secs
 // setInterval(sendTime, 3000);
@@ -60,9 +73,9 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('i am client', console.log);
     socket.on('button', function(){
-    	socket.emit('success',{successMessage:'You have sent a successful ______ request'});
-    	sendEmail();
-    	venmoRequest();
+        socket.emit('success',{successMessage:'You have sent a successful ______ request'});
+        // sendEmail();
+        venmoRequest();
     });
 });
 
