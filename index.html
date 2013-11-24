@@ -1,10 +1,9 @@
 <!doctype html>
 <html>
     <head>
-        <script src='//code.jquery.com/jquery-1.7.2.min.js'></script>
-        <script src='//localhost:8080/socket.io/socket.io.js'></script>
+        
         <script>
-            var socket = io.connect('http://54.200.254.10:8080');
+            var socket = io.connect('ec2-54-200-254-10.us-west-2.compute.amazonaws.com:8080');
 
             socket.on('welcome', function(data) {
                 $('#messages').append('<li>' + data.message + '</li>');
