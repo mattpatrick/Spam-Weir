@@ -139,13 +139,13 @@ function venmoRequest(number){
       }
     }, function(error, response, body) {
         //Parse response json to get the transaction ID
-        var responseString = JSON.stringify(body);
-        var responseParsed = JSON.parse(responseString);
+        // var responseString = JSON.stringify(body);
+        var responseParsed = JSON.parse(body);
         var transactionId = responseParsed.id;
     
         console.log(body);
         console.log("Target user Id is");
-        console.log(responseString);
+        console.log(responseParsed);
     });
 
 }
