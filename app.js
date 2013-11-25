@@ -161,10 +161,10 @@ io.sockets.on('connection', function(socket) {
     socket.emit('welcome', { message: 'Welcome!' });
 
     socket.on('i am client', console.log);
-    socket.on('button', function(){
+    socket.on('button', function(data){
         socket.emit('success',{successMessage:'You have sent a successful ______ request'});
         spamRequest();
-        console.log(button.number);
+        console.log(data.number);
     });
 });
 
