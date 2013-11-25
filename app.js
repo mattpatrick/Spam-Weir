@@ -22,7 +22,7 @@ var app = http.createServer(function(req, res) {
             var queryValue = queryParsed.venmo_challenge;
             var body = queryValue;
 
-            if queryValue{
+            if (queryValue){
             res.writeHead(200, {
                 'Content-Length':body.length,
                 'Content-Type':'text/plain'});
