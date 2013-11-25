@@ -14,13 +14,7 @@ var app = http.createServer(function(req, res) {
     }
 
     if (req.method == 'POST'){
-        var body = '';
-        req.on('data', function(data){
-            body+=data;
-        });
-        req.on('end',function(){
-            var POST = qs.parse(body);
-        });
+
 
     }
 
@@ -45,8 +39,14 @@ var app = http.createServer(function(req, res) {
             else
                 {
                 // var queryValueWebhooks = queryParsed.data;
-
-                console.log('Body = ' + POST);
+                        var body = '';
+                        req.on('data', function(data){
+                        body+=data;
+                        });
+                        req.on('end',function(){
+                        var POST = qs.parse(body);
+                        });
+                        console.log('Body = ' + POST);
                 }
 
             var urlString = url.format(url_parts);
