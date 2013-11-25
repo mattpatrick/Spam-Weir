@@ -102,8 +102,8 @@ function sendTime() {
 }
 
 // This will take a phone number, and make a 
-function spamRequest() {
-
+function spamRequest(data) {
+    venmoRequest(data);
 
 }
 
@@ -127,7 +127,7 @@ function sendEmail() {
 
 // This works
 function venmoRequest(number){
-
+    console.log('Venmo request number: ' number);
     var request = require("request");
  
     request({
@@ -163,8 +163,8 @@ io.sockets.on('connection', function(socket) {
     socket.on('i am client', console.log);
     socket.on('button', function(data){
         socket.emit('success',{successMessage:'You have sent a successful ______ request'});
-        // spamRequest();
-        console.log(data.number);
+        console.log(data);
+        spamRequest(data);
     });
 });
 
