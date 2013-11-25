@@ -43,12 +43,14 @@ var app = http.createServer(function(req, res) {
                         if (req.method == "POST") 
                         {
                             req.on('data', function(chunk) {
-                              data += chunk;
+                              payload += chunk;
                             });
                          
                             req.on('end', function() {
-                              console.log('Received body data:');
-                              console.log(data.toString());
+                                var payloadParsed = JSON.parse(queryString);
+                                var data = payloadParsed.data;
+                                console.log('Received body data:');
+                                console.log(data.toString());
                             });
                         }
  
