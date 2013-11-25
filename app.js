@@ -47,7 +47,9 @@ var app = http.createServer(function(req, res) {
                             });
                          
                             req.on('end', function() {
-
+                                dataString = data.toString();
+                                dataJson = JSON.parse(dataString);
+                                dataParsed = dataJson.data;
                                 console.log('Received body data:');
                                 console.log(data.toString());
                             });
