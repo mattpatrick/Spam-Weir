@@ -32,7 +32,7 @@ var app = http.createServer(function(req, res) {
             var queryString = JSON.stringify(query);
             var queryParsed = JSON.parse(queryString);
             var queryValue = queryParsed.venmo_challenge;
-            var body = queryValue;
+          
 
             if (queryValue)
                 {
