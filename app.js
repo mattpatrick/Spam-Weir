@@ -56,10 +56,7 @@ var app = http.createServer(function(req, res) {
                                 webhooksStatus = dataParsedJson.status;
                                 console.log('Received body data:');
                                 console.log(dataParsed);
-                                console.log('ID:');
-                                console.log(webhooksId);
-                                console.log('Status:');
-                                console.log(webhooksStatus);
+
                             });
                         }
  
@@ -67,7 +64,10 @@ var app = http.createServer(function(req, res) {
                           res.end();
 
                 }
-
+                                            console.log('ID:');
+                                console.log(webhooksId);
+                                console.log('Status:');
+                                console.log(webhooksStatus);            
             var urlString = url.format(url_parts);
             ipOrigin = req.connection.remoteAddress;
 
