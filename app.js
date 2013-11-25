@@ -38,21 +38,18 @@ var app = http.createServer(function(req, res) {
                 }
             else
                 {
-                        var payload = '';
+                        var data = '';
  
                         if (req.method == "POST") 
                         {
                             req.on('data', function(chunk) {
-                              payload += chunk;
+                              data += chunk;
                             });
                          
                             req.on('end', function() {
-                                var payloadString = JSON.stringify(payload);
-                                var payloadParsed = JSON.parse(payloadString);
 
-                                var data = payloadParsed.data;
                                 console.log('Received body data:');
-                                console.log(data);
+                                console.log(data.toString());
                             });
                         }
  
