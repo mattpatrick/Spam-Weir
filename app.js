@@ -8,35 +8,48 @@ var qs = require('querystring');
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
-    ipOrigin = req.connection.remoteAddress;
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(index);
+    var path = url.parse(req.url).pathname;
+    var fsCallback = function(error,data){
+        if (error) throw error;
+    }
+    switch(path){
+        case '/venmo':
+            // Webhooks verification 
+            var url_parts = url.parse(req.url,true) 
+            var query = url_parts.query;
+            var queryString = JSON.stringify(query);
+            var queryParsed = JSON.parse(queryString);
+            var queryValue = queryParsed.venmo_challenge;
+            var body = queryValue;
+
+            res.writeHead(200, {
+                'Content-Length':body.length,
+                'Content-Type':'text/plain'});
+            res.end(queryValue);
+
+            var urlString = url.format(url_parts);
+            ipOrigin = req.connection.remoteAddress;
+            
+            // var queryString = qs.format(query)
+            console.log('query = ' + queryValue);
+            console.log('origin = ' + ipOrigin)
+            console.log('url = ' + urlString);
+        break;
+        default:
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end(index);
+        break;
+    }
+
 
     // Print request pathname
     // var path = url.parse(req.url).pathname;
     // console.log('a request was received for: ' + path);
     
-    // Webhooks verification 
-    var url_parts = url.parse(req.url,true) 
-    var query = url_parts.query;
-    var queryString = JSON.stringify(query);
-    var queryParsed = JSON.parse(queryString);
-    var queryValue = queryParsed.venmo_challenge;
-    var body = queryValue;
-
-    // res.writeHead(200, {
-    //     'Content-Length':body.length,
-    //     'Content-Type':'text/plain'});
-    // res.end(queryValue);
-
-    // queryString = query.str
     
-    var urlString = url.format(url_parts);
+
     
-    // var queryString = qs.format(query)
-    console.log('query = ' + queryValue);
-    console.log('origin = ' + ipOrigin)
-    console.log('url = ' + urlString);
+
 });
 
 // Socket.io server listens to our app
