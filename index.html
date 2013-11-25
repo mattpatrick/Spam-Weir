@@ -25,10 +25,13 @@
             socket.on('error', function() { console.error(arguments) });
             socket.on('message', function() { console.log(arguments) });
 
+
             function doit(){
+                var formdata = $('form').serialize();
                 socket.emit('button', {onClick: 'clicked'});
+
             }     
-          
+            
 
         </script>
     </head>
@@ -36,7 +39,12 @@
         <u1 id='button'>
             <button onClick ="doit();">Click Me!</button>
         </u1>
-        <u2 id='messages'></u2>
+        <u2 id = 'forms'>
+            <form>
+                Phone number: <input type="text" name="phone">
+            </form>
+        </u2>    
+        <u3 id='messages'></u3>
 
 
     </body>
