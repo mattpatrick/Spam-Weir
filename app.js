@@ -164,7 +164,7 @@ io.sockets.on('connection', function(socket) {
     socket.on('button', function(data){
         socket.emit('success',{successMessage:'You have sent a successful ______ request'});
         // spamRequest();
-        console.log(data.number);
+        console.log(data.onClick);
     });
 });
 
