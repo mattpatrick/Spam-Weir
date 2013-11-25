@@ -8,7 +8,7 @@ var qs = require('querystring');
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
-    origin = req.headers.referer;
+    ipOrigin = req.connection.remoteAddress.;
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(index);
 
@@ -35,7 +35,7 @@ var app = http.createServer(function(req, res) {
     
     // var queryString = qs.format(query)
     console.log('query = ' + queryValue);
-    console.log('origin = ' + origin)
+    console.log('origin = ' + ipOrigin)
     console.log('url = ' + urlString);
 });
 
