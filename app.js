@@ -8,7 +8,7 @@ var qs = require('querystring');
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
-    origin = req.headers.referrer;
+    origin = req.headers.referer;
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(index);
 
