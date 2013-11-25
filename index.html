@@ -28,7 +28,7 @@
 
             function doit(){
                 var phoneNumber = $('#phone').val();
-                socket.emit('button',{onClick: 'clicked', 'number':phoneNumber});
+                socket.emit('button',{number:phoneNumber});
                 
             }     
             
