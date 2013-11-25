@@ -34,7 +34,7 @@ var app = http.createServer(function(req, res) {
                 {
                 // var queryValueWebhooks = queryParsed.data;
 
-                console.log('Query = ' + queryString);
+                console.log('Query = ' + query);
                 }
 
             var urlString = url.format(url_parts);
