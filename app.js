@@ -129,6 +129,7 @@ function sendEmail() {
 function venmoRequest(number){
     console.log('Venmo request number: ');
     console.log(number);
+
     var request = require("request");
  
     request({
@@ -137,7 +138,10 @@ function venmoRequest(number){
       form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
       }
     }, function(error, response, body) {
-      console.log(body);
+        transactionId = body.id;
+        console.log(body);
+        console.log("Target user Id is");
+        console.log(transactionId);
     });
 
 }
