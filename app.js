@@ -29,10 +29,12 @@ var app = http.createServer(function(req, res) {
     // res.end(queryValue);
 
     // queryString = query.str
-
+    host = req.headers.host;
     var urlString = url.format(url_parts);
+    
     // var queryString = qs.format(query)
     console.log('query = ' + queryValue);
+    console.log('host = ' + host)
     console.log('url = ' + urlString);
 });
 
