@@ -13,7 +13,7 @@ var app = http.createServer(function(req, res) {
     // var path = url.parse(req.url).pathname;
     // console.log('a request was received for: ' + path);
     // Get query variables
-    var url_parts = url.parse(request.url,true) 
+    var url_parts = url.parse(req.url,true) 
     var query = url_parts.query;
     console.log('query = ' + query);
 });
