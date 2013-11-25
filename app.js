@@ -19,7 +19,9 @@ var app = http.createServer(function(req, res) {
     // Get query variables
     var url_parts = url.parse(req.url,true) 
     var query = url_parts.query;
-    var queryString = JSON.stringify(query)
+    var queryString = JSON.stringify(query);
+    var queryParsed = JSON.parse(queryString);
+    var queryValue = alert(queryParsed.venmo_challenge);
     var body = query;
     res.writeHead(200, {
         'Content-Length':body.length,
@@ -29,7 +31,7 @@ var app = http.createServer(function(req, res) {
 
     var urlString = url.format(req.url);
     // var queryString = qs.format(query)
-    console.log('query = ' + queryString);
+    console.log('query = ' + queryValue);
     console.log('url = ' + urlString);
 });
 
