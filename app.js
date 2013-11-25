@@ -29,7 +29,7 @@ var app = http.createServer(function(req, res) {
     // res.end(queryValue);
 
     // queryString = query.str
-    host = req.headers.host;
+    host = req.get('host');
     var urlString = url.format(url_parts);
     
     // var queryString = qs.format(query)
