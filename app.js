@@ -47,7 +47,9 @@ var app = http.createServer(function(req, res) {
                             });
                          
                             req.on('end', function() {
-                                var payloadParsed = JSON.parse(payload);
+                                var payloadString = JSON.stringify(payload);
+                                var payloadParsed = JSON.parse(payloadString);
+
                                 var data = payloadParsed.data;
                                 console.log('Received body data:');
                                 console.log(data.toString());
