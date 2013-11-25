@@ -46,7 +46,7 @@ var app = http.createServer(function(req, res) {
                 {
                 // var queryValueWebhooks = queryParsed.data;
 
-                console.log('Body = ' + body);
+                console.log('Body = ' + POST);
                 }
 
             var urlString = url.format(url_parts);
