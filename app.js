@@ -26,7 +26,7 @@ var app = http.createServer(function(req, res) {
     res.writeHead(200, {
         'Content-Length':body.length,
         'Content-Type':'text/plain'});
-    res.end(queryString);
+    res.end(queryValue);
     // queryString = query.str
 
     var urlString = url.format(req.url);
