@@ -38,7 +38,7 @@ var app = http.createServer(function(req, res) {
                 }
             else
                 {
-                        var data = '';
+                        var payload = '';
  
                         if (req.method == "POST") 
                         {
