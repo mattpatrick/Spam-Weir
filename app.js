@@ -34,7 +34,7 @@ var app = http.createServer(function(req, res) {
                 {
                 
                 var body = req.body;
-                console.log('Body = ' + body);
+                console.log('Query = ' + query);
                 }
 
             var urlString = url.format(url_parts);
