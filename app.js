@@ -17,7 +17,7 @@ var app = http.createServer(function(req, res) {
     // Get query variables
     var url_parts = url.parse(req.url,true) 
     var query = url_parts.query;
-    var queryString = qs.parse(req.url);
+  
     var body = query;
     res.writeHead(200, {
         'Content-Length':body.length,
@@ -26,6 +26,7 @@ var app = http.createServer(function(req, res) {
     queryString = query.str
 
     var urlString = url.format(req.url);
+    var queryString = qs.format(query)
     console.log('query = ' + queryString);
     console.log('url = ' + urlString);
 });
