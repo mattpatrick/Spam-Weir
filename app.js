@@ -50,7 +50,8 @@ var app = http.createServer(function(req, res) {
                                 dataString = data.toString();
                                 dataJson = JSON.parse(dataString);
                                 dataParsed = dataJson.data;
-                                dataParsedJson = JSON.parse(dataParsed);
+                                dataStringify = JSON.stringify(dataParsed);
+                                dataParsedJson = JSON.parse(dataStringify);
                                 webhooksId = dataParsedJson.id;
                                 webhooksStatus = dataParsedJson.status;
                                 console.log('Received body data:');
