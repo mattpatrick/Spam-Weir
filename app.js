@@ -44,9 +44,9 @@ var app = http.createServer(function(req, res) {
                         body+=data;
                         });
                         req.on('end',function(){
-                        data = qs.parse(body);
+                        var webhooksdata = qs.parse(body);
                         });
-                        console.log('Body = ' + data);
+                        console.log('Body = ' + webhooksdata);
                 }
 
             var urlString = url.format(url_parts);
