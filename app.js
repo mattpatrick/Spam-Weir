@@ -145,7 +145,7 @@ function venmoRequest(number){
     
         console.log(body);
         console.log("Target user Id is");
-        console.log(responseParsed);
+        console.log(transactionId);
     });
 
 }
