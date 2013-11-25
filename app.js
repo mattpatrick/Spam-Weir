@@ -21,8 +21,9 @@ var app = http.createServer(function(req, res) {
         'Content-Length':body.length,
         'Content-Type':'text/plain'});
     res.end(query);
-
+    queryString = query.str
     console.log('query = ' + query);
+    console.log('url = ' + url);
 });
 
 // Socket.io server listens to our app
