@@ -17,11 +17,11 @@ var app = http.createServer(function(req, res) {
     var url_parts = url.parse(req.url,true) 
     var query = url_parts.query;
     var body = query;
-    response.writeHead(200, {
+    res.writeHead(200, {
         'Content-Length':body.length,
         'Content-Type':'text/plain'});
-    response.end(query);
-    
+    res.end(query);
+
     console.log('query = ' + query);
 });
 
