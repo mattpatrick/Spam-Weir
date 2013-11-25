@@ -23,10 +23,10 @@ var app = http.createServer(function(req, res) {
         'Content-Length':body.length,
         'Content-Type':'text/plain'});
     res.end(query);
-    queryString = query.str
+    // queryString = query.str
 
     var urlString = url.format(req.url);
-    var queryString = qs.format(query)
+    // var queryString = qs.format(query)
     console.log('query = ' + queryString);
     console.log('url = ' + urlString);
 });
