@@ -8,8 +8,8 @@ var qs = require('querystring');
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(index);
+    // res.writeHead(200, {'Content-Type': 'text/html'});
+    // res.end(index);
 
     // Print request pathname
     // var path = url.parse(req.url).pathname;
@@ -19,17 +19,17 @@ var app = http.createServer(function(req, res) {
     // Get query variables
     var url_parts = url.parse(req.url,true) 
     var query = url_parts.query;
-    var queryString = JSON.stringify(query);
+    var queryString = JSON.stringify(query)
     var body = query;
     res.writeHead(200, {
         'Content-Length':body.length,
         'Content-Type':'text/plain'});
-    res.end(query);
+    res.end(queryString);
     // queryString = query.str
 
     var urlString = url.format(req.url);
     // var queryString = qs.format(query)
-    console.log('query = ' + queryString);
+    console.log('query = ' + query);
     console.log('url = ' + urlString);
 });
 
