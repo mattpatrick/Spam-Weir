@@ -22,8 +22,10 @@ var app = http.createServer(function(req, res) {
         'Content-Type':'text/plain'});
     res.end(query);
     queryString = query.str
+
+    var urlString = url.format(req.url);
     console.log('query = ' + query);
-    console.log('url = ' + url);
+    console.log('url = ' + urlString);
 });
 
 // Socket.io server listens to our app
