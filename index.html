@@ -27,9 +27,9 @@
 
 
             function doit(){
-                var formdata = $('form').serialize();
-                socket.emit('button', {onClick: 'clicked'});
-
+                var phoneNumber = $('#phone').val();
+                socket.emit('button', 'phone', {onClick: 'clicked'}, {number: phoneNumber});
+                
             }     
             
 
@@ -41,7 +41,7 @@
         </u1>
         <u2 id = 'forms'>
             <form>
-                Phone number: <input type="text" name="phone">
+                Phone number: <input type="text" id="phone">
             </form>
         </u2>    
         <u3 id='messages'></u3>

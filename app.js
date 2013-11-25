@@ -51,12 +51,15 @@ var app = http.createServer(function(req, res) {
                                 dataJson = JSON.parse(dataString);
                                 dataParsed = dataJson.data;
                                 dataStringify = JSON.stringify(dataParsed);
-                                dataParsedJson = JSON.parse(dataStringify);
-                                var webhooksId = dataParsedJson.id;
-                                var webhooksStatus = dataParsedJson.status;
+                                dataParsedJson = JSON.parse(dataString);
+                                webhooksId = dataParsedJson.id;
+                                webhooksStatus = dataParsedJson.status;
                                 console.log('Received body data:');
                                 console.log(dataParsed);
-
+                                console.log('ID:');
+                                console.log(webhooksId);
+                                console.log('Status:');
+                                console.log(webhooksStatus);
                             });
                         }
  
@@ -64,10 +67,7 @@ var app = http.createServer(function(req, res) {
                           res.end();
 
                 }
-                                            console.log('ID:');
-                                console.log(webhooksId);
-                                console.log('Status:');
-                                console.log(webhooksStatus);            
+
             var urlString = url.format(url_parts);
             ipOrigin = req.connection.remoteAddress;
 
@@ -101,6 +101,12 @@ function sendTime() {
     io.sockets.emit('time', { time: new Date().toJSON() });
 }
 
+// This will take a phone number, and make a 
+function spamRequest() {
+
+
+}
+
 // This works
 function sendEmail() {
     var postmark = require("postmark")("1ec2a3f4-3601-4792-b9dc-a1bbeb6258c5");
@@ -120,7 +126,7 @@ function sendEmail() {
 }
 
 // This works
-function venmoRequest(){
+function venmoRequest(number){
 
     var request = require("request");
  
@@ -157,8 +163,8 @@ io.sockets.on('connection', function(socket) {
     socket.on('i am client', console.log);
     socket.on('button', function(){
         socket.emit('success',{successMessage:'You have sent a successful ______ request'});
-        // sendEmail();
-        venmoRequest();
+        spamRequest();
+        console.log(button.number);
     });
 });
 
