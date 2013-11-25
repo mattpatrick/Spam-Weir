@@ -44,9 +44,9 @@ var app = http.createServer(function(req, res) {
                         body+=data;
                         });
                         req.on('end',function(){
-                        var POST = qs.parse(body);
+                        data = qs.parse(body);
                         });
-                        console.log('Body = ' + POST);
+                        console.log('Body = ' + data);
                 }
 
             var urlString = url.format(url_parts);
