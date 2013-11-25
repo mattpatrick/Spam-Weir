@@ -8,25 +8,25 @@ var qs = require('querystring');
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
-    // res.writeHead(200, {'Content-Type': 'text/html'});
-    // res.end(index);
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(index);
 
     // Print request pathname
     // var path = url.parse(req.url).pathname;
     // console.log('a request was received for: ' + path);
     
-    var queryData = url.parse(req.url, true).query;
-    // Get query variables
+    // Webhooks verification 
     var url_parts = url.parse(req.url,true) 
     var query = url_parts.query;
     var queryString = JSON.stringify(query);
     var queryParsed = JSON.parse(queryString);
     var queryValue = queryParsed.venmo_challenge;
     var body = queryValue;
-    res.writeHead(200, {
-        'Content-Length':body.length,
-        'Content-Type':'text/plain'});
-    res.end(queryValue);
+    // res.writeHead(200, {
+    //     'Content-Length':body.length,
+    //     'Content-Type':'text/plain'});
+    // res.end(queryValue);
+    
     // queryString = query.str
 
     var urlString = url.format(req.url);
