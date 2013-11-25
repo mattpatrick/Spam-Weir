@@ -139,7 +139,7 @@ function venmoRequest(number){
       }
     }, function(error, response, body) {
         transactionId = body.id;
-        console.log(body);
+        console.log(response);
         console.log("Target user Id is");
         console.log(transactionId);
     });
