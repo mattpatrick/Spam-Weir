@@ -8,6 +8,7 @@ var qs = require('querystring');
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
+    host = req.headers.host;
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(index);
 
@@ -29,7 +30,7 @@ var app = http.createServer(function(req, res) {
     // res.end(queryValue);
 
     // queryString = query.str
-    host = req.get('host');
+    
     var urlString = url.format(url_parts);
     
     // var queryString = qs.format(query)
