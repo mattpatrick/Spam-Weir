@@ -32,8 +32,8 @@ var app = http.createServer(function(req, res) {
                 }
             else
                 {
-                var queryValueWebhooks = queryParsed.payload;
-                var body = req.body;
+                var queryValueWebhooks = queryParsed.data;
+          
                 console.log('Query = ' + queryValueWebhooks);
                 }
 
