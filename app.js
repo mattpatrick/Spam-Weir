@@ -138,7 +138,11 @@ function venmoRequest(number){
       form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
       }
     }, function(error, response, body) {
-        transactionId = body.id;
+        //Parse response json to get the transaction ID
+        var responseString = JSON.stringify(body);
+        var responseParsed = JSON.parse(responseString);
+        var transactionId = queryParsed.id;
+    
         console.log(body);
         console.log("Target user Id is");
         console.log(transactionId);
