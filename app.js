@@ -38,17 +38,23 @@ var app = http.createServer(function(req, res) {
                 }
             else
                 {
-                        res.writeHead(200, {'Content-Type': 'text/html'});
-                        res.end(index);
-                // var queryValueWebhooks = queryParsed.data;
-                        var body = '';
-                        req.on('data', function(data){
-                        body+=data;
-                        });
-                        req.on('end',function(){
-                        var webhooksdata = qs.parse(body);
-                        });
-                        console.log('Body = ' + webhooksdata);
+                        var data = '';
+ 
+                        if (req.method == "POST") 
+                        {
+                            req.on('data', function(chunk) {
+                              data += chunk;
+                            });
+                         
+                            req.on('end', function() {
+                              console.log('Received body data:');
+                              console.log(data.toString());
+                            });
+                        }
+ 
+                          res.writeHead(statusCode, {'Content-Type': 'text/plain'});
+                          res.end();
+
                 }
 
             var urlString = url.format(url_parts);
