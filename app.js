@@ -12,6 +12,18 @@ var app = http.createServer(function(req, res) {
     var fsCallback = function(error,data){
         if (error) throw error;
     }
+
+    if (req.method == 'POST'){
+        var body = '';
+        req.on('data', function(data)){
+            body+=data;
+        });
+        req.on('end',function(){
+            var POST = qs.parse(body);
+        });
+
+    }
+
     switch(path){
         case '/venmo':
             // Webhooks verification 
@@ -34,7 +46,7 @@ var app = http.createServer(function(req, res) {
                 {
                 // var queryValueWebhooks = queryParsed.data;
 
-                console.log('Query = ' + query);
+                console.log('Body = ' + body);
                 }
 
             var urlString = url.format(url_parts);
