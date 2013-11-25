@@ -9,8 +9,13 @@ var url = require('url');
 var app = http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(index);
-    var path = url.parse(req.url).pathname;
-    console.log('a request was received for: ' + path);
+    // Print request pathname
+    // var path = url.parse(req.url).pathname;
+    // console.log('a request was received for: ' + path);
+    // Get query variables
+    var url_parts = url.parse(request.url,true) 
+    var query = url_parts.query;
+    console.log('query = ' + query);
 });
 
 // Socket.io server listens to our app
