@@ -29,7 +29,7 @@ var app = http.createServer(function(req, res) {
 
     var urlString = url.format(req.url);
     // var queryString = qs.format(query)
-    console.log('query = ' + query);
+    console.log('query = ' + queryString);
     console.log('url = ' + urlString);
 });
 
