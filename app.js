@@ -164,8 +164,11 @@ io.sockets.on('connection', function(socket) {
     socket.on('i am client', console.log);
     socket.on('button', function(data){
         socket.emit('success',{successMessage:'You have sent a successful ______ request'});
-        console.log(data);
-        spamRequest(data);
+        
+
+        number = data.number;
+        console.log(number);
+        // spamRequest(data);
     });
 });
 
