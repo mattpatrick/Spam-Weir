@@ -141,7 +141,7 @@ function venmoRequest(number){
         //Parse response json to get the transaction ID
         var responseString = JSON.stringify(body);
         var responseParsed = JSON.parse(responseString);
-        var transactionId = queryParsed.id;
+        var transactionId = responseParsed.id;
     
         console.log(body);
         console.log("Target user Id is");
