@@ -33,8 +33,8 @@ var app = http.createServer(function(req, res) {
             else
                 {
                 // var queryValueWebhooks = queryParsed.data;
-                id = JSON.queryParsed.id;
-                console.log('Query = ' + queryParsed);
+
+                console.log('Query = ' + queryString);
                 }
 
             var urlString = url.format(url_parts);
