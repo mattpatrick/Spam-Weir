@@ -12,9 +12,16 @@ var app = http.createServer(function(req, res) {
     // Print request pathname
     // var path = url.parse(req.url).pathname;
     // console.log('a request was received for: ' + path);
+    
     // Get query variables
     var url_parts = url.parse(req.url,true) 
     var query = url_parts.query;
+    var body = query;
+    response.writeHead(200, {
+        'Content-Length':body.length,
+        'Content-Type':'text/plain'});
+    response.end(query);
+    
     console.log('query = ' + query);
 });
 
