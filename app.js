@@ -52,7 +52,7 @@ var app = http.createServer(function(req, res) {
 
                                 var data = payloadParsed.data;
                                 console.log('Received body data:');
-                                console.log(data.toString());
+                                console.log(data);
                             });
                         }
  
