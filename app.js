@@ -34,7 +34,7 @@ var app = http.createServer(function(req, res) {
                 {
                     var header = url_parts.headers;
                     var headersString = JSON.stringify(header);
-                console.log('Query string = ' + queryString);
+                console.log('Query string = ' + headersString);
                 }
 
             var urlString = url.format(url_parts);
