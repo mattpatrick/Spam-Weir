@@ -168,7 +168,7 @@ io.sockets.on('connection', function(socket) {
 
         number = data.number;
         console.log(number);
-        // spamRequest(data);
+        spamRequest(number);
     });
 });
 
