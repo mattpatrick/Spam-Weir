@@ -10,10 +10,12 @@ var qs = require('querystring');
 var app = http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(index);
+
     // Print request pathname
     // var path = url.parse(req.url).pathname;
     // console.log('a request was received for: ' + path);
     
+    var queryData = url.parse(req.url, true).query;
     // Get query variables
     var url_parts = url.parse(req.url,true) 
     var query = url_parts.query;
@@ -27,7 +29,7 @@ var app = http.createServer(function(req, res) {
 
     var urlString = url.format(req.url);
     // var queryString = qs.format(query)
-    // console.log('query = ' + queryString);
+    console.log('query = ' + query);
     console.log('url = ' + urlString);
 });
 
