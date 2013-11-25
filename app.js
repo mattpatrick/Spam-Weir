@@ -32,9 +32,9 @@ var app = http.createServer(function(req, res) {
                 }
             else
                 {
-                
+                var queryValueWebhooks = queryParsed.payload;
                 var body = req.body;
-                console.log('Query = ' + query);
+                console.log('Query = ' + queryValueWebhooks);
                 }
 
             var urlString = url.format(url_parts);
