@@ -127,7 +127,8 @@ function sendEmail() {
 
 // This works
 function venmoRequest(number){
-    console.log('Venmo request number: ' number);
+    console.log('Venmo request number: ');
+    console.log(number);
     var request = require("request");
  
     request({
