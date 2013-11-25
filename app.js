@@ -22,14 +22,15 @@ var app = http.createServer(function(req, res) {
     var queryParsed = JSON.parse(queryString);
     var queryValue = queryParsed.venmo_challenge;
     var body = queryValue;
+
     // res.writeHead(200, {
     //     'Content-Length':body.length,
     //     'Content-Type':'text/plain'});
     // res.end(queryValue);
-    
+
     // queryString = query.str
 
-    var urlString = url.format(req.url);
+    var urlString = url.format(url_parts);
     // var queryString = qs.format(query)
     console.log('query = ' + queryValue);
     console.log('url = ' + urlString);
