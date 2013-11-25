@@ -32,8 +32,11 @@ var app = http.createServer(function(req, res) {
                 }
             else
                 {
+                    var header = url_parts.headers;
+                    var headersString = JSON.stringify(header);
                 console.log('Query string = ' + queryString);
                 }
+
             var urlString = url.format(url_parts);
             ipOrigin = req.connection.remoteAddress;
 
