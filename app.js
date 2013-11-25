@@ -22,14 +22,16 @@ var app = http.createServer(function(req, res) {
             var queryValue = queryParsed.venmo_challenge;
             var body = queryValue;
 
+            if queryValue{
             res.writeHead(200, {
                 'Content-Length':body.length,
                 'Content-Type':'text/plain'});
             res.end(queryValue);
 
+            }
             var urlString = url.format(url_parts);
             ipOrigin = req.connection.remoteAddress;
-            
+
             // var queryString = qs.format(query)
             console.log('query = ' + queryValue);
             console.log('origin = ' + ipOrigin)
