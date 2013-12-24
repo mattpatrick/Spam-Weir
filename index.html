@@ -28,12 +28,27 @@
 
             function doit(){
                 var phoneNumber = $('#phone').val();
+		var SpamObject = Parse.Object.extend("Spam");
+    		var spamObject = new SpamObject();
+      		spamObject.save({phone: phoneNumber}, {
+      			success: function(object) {
+        		$(".success").show();
+      			},
+      			error: function(model, error) {
+        		$(".error").show();
+      			}
+    		});
                 socket.emit('button',{number:phoneNumber});
                 
             }     
             
 
         </script>
+
+	<script type="text/javascript">
+    		Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
+  	</script>
+
     </head>
     <body>
         <u1 id='button'>
@@ -46,6 +61,13 @@
         </u2>    
         <u3 id='messages'></u3>
 
+	<div style="display:none" class="error">
+      		Couldn't save phone number.
+    	</div>
+
+    	<div style="display:none" class="success">
+		Saved the phone number.
+    	</div>
 
     </body>
 </html>
