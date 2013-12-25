@@ -2,9 +2,11 @@ var request = require('request');
 var http = require('http'),
     fs = require('fs'),
     // NEVER use a Sync function except at start-up!
-    index = fs.readFileSync(__dirname + '/index.html');
+    index = fs.readFileSync(__dirname + '/index.html'),
+	wait = fs.readFileSync(__dirname + '/wait.html');
 var url = require('url');
 var qs = require('querystring');
+var Parse = require('parse').Parse;
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
@@ -19,6 +21,51 @@ var app = http.createServer(function(req, res) {
     }
 
     switch(path){
+	case '/wait':
+		console.log('In wait')
+		var url_parts = url.parse(req.url, true);
+		var query = url_parts.query;
+		var queryString = JSON.stringify(query);
+		var queryParsed = JSON.parse(queryString);
+		var queryValue = queryParsed.phone;
+		res.writeHead(200, {'Content-Type': 'text/html'});
+		res.end(wait);
+		queryParse(queryValue);
+
+		function holdAndCall(phoneNum){
+			setTimeout(function(){console.log('holding for 5 seconds');queryParse(phoneNum,res);},5000);
+		}
+
+		function queryParse(phoneNum){
+			Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
+			var SpamObject = Parse.Object.extend("Spam");
+			var query = new Parse.Query(SpamObject);
+			query.descending("createdAt");
+			query.equalTo("phone",phoneNum);	
+			query.first({
+  				success: function(object) {
+		    			console.log('Got the object');
+					paid = object.get('Paid');
+					console.log('Paid in query: ' + paid);
+					if (paid){
+						console.log('it is all paid');
+						io.sockets.emit('paid', { message: 'You paid wahoo!' });
+						//console.log(res);
+					}
+					else{
+						holdAndCall(phoneNum);
+					}
+ 				},
+		  		error: function(error) {
+    					alert("Error: " + error.code + " " + error.message);
+		  		}
+			});
+		}
+
+		//doIt(queryValue);		
+
+		
+
         case '/venmo':
             // Webhooks verification 
             var url_parts = url.parse(req.url,true) 
@@ -106,6 +153,8 @@ function spamRequest(data) {
     venmoRequest(data);
 
 }
+
+
 
 // This works
 function sendEmail() {

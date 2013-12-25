@@ -3,9 +3,10 @@
     <head>
 
         <script src='//code.jquery.com/jquery-1.7.2.min.js'></script>
-        <script src='//54.200.254.10:8080/socket.io/socket.io.js'></script>
+	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.15.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
         <script>
-            var socket = io.connect('54.200.254.10:8080');
+            var socket = io.connect('127.0.0.1:8080');
 
             socket.on('welcome', function(data) {
                 $('#messages').append('<li>' + data.message + '</li>');
@@ -28,9 +29,10 @@
 
             function doit(){
                 var phoneNumber = $('#phone').val();
+		Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
 		var SpamObject = Parse.Object.extend("Spam");
     		var spamObject = new SpamObject();
-      		spamObject.save({phone: phoneNumber}, {
+      		spamObject.save({phone: phoneNumber,Paid: false}, {
       			success: function(object) {
         		$(".success").show();
       			},
@@ -45,9 +47,8 @@
 
         </script>
 
-	<script type="text/javascript">
-    		Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
-  	</script>
+	
+
 
     </head>
     <body>
