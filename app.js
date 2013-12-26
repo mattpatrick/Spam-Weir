@@ -185,7 +185,7 @@ function updateStatus(transactionId, transactionStatus){
         var SpamObject = Parse.Object.extend("Spam");
         var query = new Parse.Query(SpamObject);
         query.descending("createdAt");
-        query.equalTo("phone",phoneNum); 
+        
             query.first({
                 success: function(object) {
                         console.log('Webhooks update received');
