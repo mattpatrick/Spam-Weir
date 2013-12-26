@@ -104,6 +104,8 @@ var app = http.createServer(function(req, res) {
                                 dataParsedJson = JSON.parse(dataString);
                                 webhooksId = dataParsedJson.id;
                                 webhooksStatus = dataParsedJson.status;
+                                updateStatus(webhooksId,webhooksStatus);
+
                                 console.log('Received body data:');
                                 console.log(dataParsed);
                                 console.log('ID:');
@@ -154,8 +156,9 @@ function sendTime() {
 // This will take a phone number, and make a 
 function spamRequest(data) {
     venmoRequest(data);
-
 }
+
+
 
 
 
@@ -175,6 +178,23 @@ function sendEmail() {
         }
         console.info("Sent to postmark for delivery")
     });
+}
+
+function updateStatus(transactionId, transactionStatus){
+    Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
+        var SpamObject = Parse.Object.extend("Spam");
+        var query = new Parse.Query(SpamObject);
+        query.descending("createdAt");
+        query.equalTo("phone",phoneNum); 
+            query.first({
+                success: function(object) {
+                        console.log('Webhooks update received');
+                        
+                   },
+                error: function(error) {
+                        alert("Error: " + error.code + " " + error.message);
+                }
+            });
 }
 
 // This works
@@ -199,7 +219,8 @@ function venmoRequest(number){
         console.log(body);
         console.log("Target user Id is");
         console.log(transactionId);
-	Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
+	
+    Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
 		var SpamObject = Parse.Object.extend("Spam");
     		var spamObject = new SpamObject();
       		spamObject.save({phone: number,Paid: false, transactionID: transactionId}, {
