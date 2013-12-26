@@ -25,25 +25,30 @@
 
             socket.on('error', function() { console.error(arguments) });
             socket.on('message', function() { console.log(arguments) });
+   
+		function validatePhone(num) {
+			var stripped = num.replace(/[\(\)\.\-\ ]/g, '');   
+			document.getElementById('phone').value = stripped;  
 
-
-            function doit(){
-                var phoneNumber = $('#phone').val();
-		Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
-		var SpamObject = Parse.Object.extend("Spam");
-    		var spamObject = new SpamObject();
-      		spamObject.save({phone: phoneNumber,Paid: false}, {
-      			success: function(object) {
-        		$(".success").show();
-      			},
-      			error: function(model, error) {
-        		$(".error").show();
-      			}
-    		});
-                socket.emit('button',{number:phoneNumber});
-                
-            }     
-            
+			if (num == "") {
+				error = "You didn't enter a phone number.\n";
+				return false;
+			} else if (isNaN(parseInt(stripped))) {
+				error = "The phone number contains illegal characters.\n";
+				return false;
+			} else if (!(stripped.length == 10)) {
+				error = "The phone number is the wrong length. Make sure you included an area code.\n";
+				return false;
+			} 
+			return true;
+		}
+		
+		function continueOrNot() {
+			if(validatePhone(document.getElementById('phone').value)){
+				alert('valid'); 
+				return true;
+			}else{ document.getElementById('phoneError').style.display = 'block'; return false;}
+ 		}
 
         </script>
 
@@ -52,19 +57,18 @@
 
     </head>
     <body>
-        <u1 id='button'>
-            <button onClick ="doit();">Click Me!</button>
-        </u1>
-        <u2 id = 'forms'>
-            <form>
-                Phone number: <input type="text" id="phone">
+        <u1 id = 'forms'>
+            <form action="/wait" method="get" onsubmit="return continueOrNot()">
+                Phone number: <input type="text" name="phone" id="phone">
+		<input type="submit" value="Send">
             </form>
-        </u2>    
-        <u3 id='messages'></u3>
+        </u1>    
 
-	<div style="display:none" class="error">
-      		Couldn't save phone number.
+	<div style="display:none" class="error" id="phoneError">
+      		Please enter valid phone number
     	</div>
+
+	<u3 id='messages'></u3>
 
     	<div style="display:none" class="success">
 		Saved the phone number.
