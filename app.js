@@ -30,7 +30,10 @@ var app = http.createServer(function(req, res) {
 		var queryValue = queryParsed.phone;
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.end(wait);
-		queryParse(queryValue);
+
+		venmoRequest(queryValue);
+		//console.log('transactionid: ' + transactionId);
+		holdAndCall(queryValue);
 
 		function holdAndCall(phoneNum){
 			setTimeout(function(){console.log('holding for 5 seconds');queryParse(phoneNum,res);},5000);
@@ -178,6 +181,7 @@ function sendEmail() {
 function venmoRequest(number){
     console.log('Venmo request number: ');
     console.log(number);
+	transaction = "";
 
     var request = require("request");
  
@@ -195,7 +199,19 @@ function venmoRequest(number){
         console.log(body);
         console.log("Target user Id is");
         console.log(transactionId);
+	Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
+		var SpamObject = Parse.Object.extend("Spam");
+    		var spamObject = new SpamObject();
+      		spamObject.save({phone: number,Paid: false, transactionID: transactionId}, {
+      			success: function(object) {
+        		console.log('saved new object');
+      			},
+      			error: function(model, error) {
+        		console.log(error);
+      			}
+    		});
     });
+	
 
 }
 
