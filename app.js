@@ -190,7 +190,7 @@ function updateTransactionStatus(transactionId, transactionStatus){
             query.first({
                 success: function(object) {
                         console.log('Status updated to: ' +transactionStatus);
-                        objectId = object.set('Status',transactionStatus);
+                        objectId = object.set("Status",transactionStatus);
   
                    },
                 error: function(error) {
