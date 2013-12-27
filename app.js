@@ -190,7 +190,10 @@ function updateTransactionStatus(transactionId, transactionStatus){
             query.first({
                 success: function(object) {
                         console.log('Status updated to: ' +transactionStatus);
-                        idUpdate = object.set("Status",transactionStatus);
+                        object.set("Status",transactionStatus);
+                        if (transactionStatus == "settled"){
+                            object.set("Paid",true);
+                        }
                         object.save();
     
                    },
