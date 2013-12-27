@@ -184,7 +184,8 @@ function updateTransactionStatus(transactionId, transactionStatus){
     Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
         var SpamObject = Parse.Object.extend("Spam");
         var query = new Parse.Query(SpamObject);
-        query.equalTo("transactionID");
+            query.descending("createdAt");
+            query.equalTo("transactionID",transactionId);    
             query.first({
                 success: function(query) {
                         console.log('Webhooks update received');
