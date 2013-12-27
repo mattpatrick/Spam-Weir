@@ -191,7 +191,7 @@ function updateTransactionStatus(transactionId, transactionStatus){
                 success: function(object) {
                         console.log('Webhooks update received');
                         objectId = object.set('status',transactionStatus);
-                        console.log(objectId);
+  
                    },
                 error: function(error) {
                         alert("Error: " + error.code + " " + error.message);
