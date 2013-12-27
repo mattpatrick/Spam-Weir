@@ -185,15 +185,17 @@ function updateTransactionStatus(transactionId, transactionStatus){
     Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
         var SpamObject = Parse.Object.extend("Spam");
         var query = new Parse.Query(SpamObject);
+        
+        if (transactionStatus == "settled"){
             query.descending("createdAt");
             query.equalTo("transactionID",transactionId);    
             query.first({
                 success: function(object) {
                         console.log('Status updated to: ' +transactionStatus);
                         object.set("Status",transactionStatus);
-                        if (transactionStatus == "settled"){
-                            object.set("Paid",true);
-                        }
+                        
+                        object.set("Paid",true);
+                        
                         object.save();
     
                    },
@@ -201,6 +203,7 @@ function updateTransactionStatus(transactionId, transactionStatus){
                         alert("Error: " + error.code + " " + error.message);
                 }
             });
+        }
 }
 
 // This works
@@ -214,7 +217,7 @@ function venmoRequest(number){
     request({
       uri: "https://api.venmo.com/payments",
       method: "POST",
-      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "-1",  "phone" : number
+      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test01", "amount" : "-1",  "phone" : number
       }
     }, function(error, response, body) {
         //Parse response json to get the transaction ID
