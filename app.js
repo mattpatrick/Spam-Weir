@@ -190,7 +190,7 @@ function updateTransactionStatus(transactionId, transactionStatus){
             query.first({
                 success: function(object) {
                         console.log('Webhooks update received');
-                        objectId = object.get('phone');
+                        objectId = object.set('status',transactionStatus);
                         console.log(objectId);
                    },
                 error: function(error) {
