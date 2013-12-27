@@ -184,12 +184,11 @@ function updateTransactionStatus(transactionId, transactionStatus){
     Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
         var SpamObject = Parse.Object.extend("Spam");
         var query = new Parse.Query(SpamObject);
-        query.descending("createdAt");
-        query.equalTo("transactionID")
+        query.equalTo("transactionID");
             query.first({
                 success: function(object) {
                         console.log('Webhooks update received');
-                        object.set("Status","heythere");
+                        objectId = object.get("objectId");
                    },
                 error: function(error) {
                         alert("Error: " + error.code + " " + error.message);
