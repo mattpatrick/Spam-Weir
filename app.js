@@ -186,9 +186,9 @@ function updateTransactionStatus(transactionId, transactionStatus){
         var query = new Parse.Query(SpamObject);
         query.equalTo("transactionID");
             query.first({
-                success: function(object) {
-                        console.log('Webhooks update received');
-                        String objectId = object.get('objectId');
+                success: function(query) {
+                        query.log('Webhooks update received');
+                        objectId = query.get('objectId');
                         console.log(objectId);
                    },
                 error: function(error) {
