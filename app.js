@@ -214,7 +214,7 @@ function venmoRequest(number){
     request({
       uri: "https://api.venmo.com/payments",
       method: "POST",
-      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Hey ross", "amount" : "7",  "phone" : "5612451076"
+      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Hey ross", "amount" : "7",  "phone" : number
       }
     }, function(error, response, body) {
         //Parse response json to get the transaction ID
