@@ -102,7 +102,7 @@ var app = http.createServer(function(req, res) {
                                 dataParsed = dataJson.data;
                                 dataStringify = JSON.stringify(dataParsed);
                                 dataParsedJson = JSON.parse(dataStringify);
-                                webhooksId = parseInt(dataParsedJson.id);
+                                webhooksId = dataParsedJson.id;
                                 webhooksStatus = dataParsedJson.status;
 
                                 updateTransactionStatus(webhooksId,webhooksStatus);
@@ -212,9 +212,9 @@ function venmoRequest(number){
     var request = require("request");
  
     request({
-      uri: "https://api.venmo.com/payments",
+      uri: "https://sandbox-api.venmo.com/payments",
       method: "POST",
-      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "-1",  "phone" : number
+      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
       }
     }, function(error, response, body) {
         //Parse response json to get the transaction ID
