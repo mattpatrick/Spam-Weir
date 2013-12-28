@@ -215,7 +215,7 @@ function venmoRequest(number){
     var request = require("request");
  
     request({
-      uri: "https://api.venmo.com/payments",
+      uri: "https://api.venmo.com/payments/v1",
       method: "POST",
       form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test01", "amount" : "-1",  "phone" : number
       }
