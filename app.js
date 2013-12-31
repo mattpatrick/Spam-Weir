@@ -219,14 +219,14 @@ function venmoRequest(number){
       method: "POST",
       
       form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test01", "amount" : "-1",  "phone" : number
-      // form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
+      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
 
       }
     }, function(error, response, body) {
         //Parse response json to get the transaction ID
         // var responseString = JSON.stringify(body);
         var responseParsed = JSON.parse(body);
-        var transactionId = toString(responseParsed.id);
+        var transactionId = responseParsed.id.toString();
     
         console.log(body);
         console.log("Target user Id is");
