@@ -188,7 +188,7 @@ function updateTransactionStatus(transactionId, transactionStatus){
         
         if (transactionStatus == "settled"){
             query.descending("createdAt");
-            query.equalTo("transactionID",transactionId);    
+            query.equalTo("transactionIDNum",transactionId);    
             query.first({
                 success: function(object) {
                         console.log('Status updated to: ' +transactionStatus);
@@ -218,7 +218,7 @@ function venmoRequest(number){
       uri: "https://api.venmo.com/v1/payments",
       method: "POST",
       
-      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test01", "amount" : "-1",  "phone" : number
+      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test02", "amount" : "-1",  "phone" : number
       // form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
 
       }
