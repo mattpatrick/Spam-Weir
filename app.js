@@ -219,7 +219,7 @@ function venmoRequest(number){
       method: "POST",
       
       form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test01", "amount" : "-1",  "phone" : number
-      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
+      // form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
 
       }
     }, function(error, response, body) {
