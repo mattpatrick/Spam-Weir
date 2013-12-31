@@ -226,7 +226,7 @@ function venmoRequest(number){
         //Parse response json to get the transaction ID
         // var responseString = JSON.stringify(body);
         var responseParsed = JSON.parse(body);
-        var transactionId = responseParsed.id.toString();
+        var transactionId = responseParsed.id;
     
         console.log(body);
         console.log("Target user Id is");
@@ -235,7 +235,7 @@ function venmoRequest(number){
     Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
 		var SpamObject = Parse.Object.extend("Spam");
     		var spamObject = new SpamObject();
-      		spamObject.save({phone: number,Paid: false, transactionID: transactionId}, {
+      		spamObject.save({phone: number,Paid: false, transactionIDNum: transactionId}, {
       			success: function(object) {
         		console.log('saved new object');
       			},
