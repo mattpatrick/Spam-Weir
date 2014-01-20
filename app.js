@@ -223,7 +223,7 @@ function venmoRequest(number){
       }
     }, function(error, response, body) {
         //Parse response json to get the transaction ID
-        // var responseString = JSON.stringify(body);
+        var responseString = JSON.stringify(body);
         var responseParsed = JSON.parse(body);
         var transactionId = responseParsed.id;
         console.log("Error: " + error);
