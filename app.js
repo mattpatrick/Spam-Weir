@@ -228,9 +228,9 @@ function venmoRequest(number){
         var responseParsed = JSON.parse(body);
         var transactionId = responseParsed.id;
     
-        console.log(body);
-        console.log("Target user Id is");
-        console.log(transactionId);
+        console.log(response);
+        // console.log("Target user Id is");
+        // console.log(transactionId);
         
     Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
                 var SpamObject = Parse.Object.extend("Spam");
