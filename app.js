@@ -219,8 +219,8 @@ function venmoRequest(number){
       method: "POST",
       
       // form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test02", "amount" : "-1",  "phone" : number
-      body: JSON.stringify({"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "user_id" : "153136"
-      })
+      body: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "user_id" : "153136"
+      }
     }, function(error, response, body) {
         //Parse response json to get the transaction ID
         // var responseString = JSON.stringify(body);
