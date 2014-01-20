@@ -3,7 +3,7 @@ var http = require('http'),
     fs = require('fs'),
     // NEVER use a Sync function except at start-up!
     index = fs.readFileSync(__dirname + '/index.html'),
-	wait = fs.readFileSync(__dirname + '/wait.html');
+        wait = fs.readFileSync(__dirname + '/wait.html');
 var url = require('url');
 var qs = require('querystring');
 var Parse = require('parse').Parse;
@@ -21,53 +21,53 @@ var app = http.createServer(function(req, res) {
     }
 
     switch(path){
-	case '/wait':
-		console.log('In wait')
-		var url_parts = url.parse(req.url, true);
-		var query = url_parts.query;
-		var queryString = JSON.stringify(query);
-		var queryParsed = JSON.parse(queryString);
-		var queryValue = queryParsed.phone;
-		res.writeHead(200, {'Content-Type': 'text/html'});
-		res.end(wait);
+        case '/wait':
+                console.log('In wait')
+                var url_parts = url.parse(req.url, true);
+                var query = url_parts.query;
+                var queryString = JSON.stringify(query);
+                var queryParsed = JSON.parse(queryString);
+                var queryValue = queryParsed.phone;
+                res.writeHead(200, {'Content-Type': 'text/html'});
+                res.end(wait);
 
-		venmoRequest(queryValue);
-		//console.log('transactionid: ' + transactionId);
-		holdAndCall(queryValue);
+                venmoRequest(queryValue);
+                //console.log('transactionid: ' + transactionId);
+                holdAndCall(queryValue);
 
-		function holdAndCall(phoneNum){
-			setTimeout(function(){console.log('holding for 5 seconds');queryParse(phoneNum,res);},5000);
-		}
+                function holdAndCall(phoneNum){
+                        setTimeout(function(){console.log('holding for 5 seconds');queryParse(phoneNum,res);},5000);
+                }
 
-		function queryParse(phoneNum){
-			Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
-			var SpamObject = Parse.Object.extend("Spam");
-			var query = new Parse.Query(SpamObject);
-			query.descending("createdAt");
-			query.equalTo("phone",phoneNum);	
-			query.first({
-  				success: function(object) {
-		    			console.log('Got the object');
-					paid = object.get('Paid');
-					console.log('Paid in query: ' + paid);
-					if (paid){
-						console.log('it is all paid');
-						io.sockets.emit('paid', { message: 'You paid wahoo!' });
-						//console.log(res);
-					}
-					else{
-						holdAndCall(phoneNum);
-					}
- 				},
-		  		error: function(error) {
-    					alert("Error: " + error.code + " " + error.message);
-		  		}
-			});
-		}
+                function queryParse(phoneNum){
+                        Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
+                        var SpamObject = Parse.Object.extend("Spam");
+                        var query = new Parse.Query(SpamObject);
+                        query.descending("createdAt");
+                        query.equalTo("phone",phoneNum);        
+                        query.first({
+                                  success: function(object) {
+                                            console.log('Got the object');
+                                        paid = object.get('Paid');
+                                        console.log('Paid in query: ' + paid);
+                                        if (paid){
+                                                console.log('it is all paid');
+                                                io.sockets.emit('paid', { message: 'You paid wahoo!' });
+                                                //console.log(res);
+                                        }
+                                        else{
+                                                holdAndCall(phoneNum);
+                                        }
+                                 },
+                                  error: function(error) {
+                                            alert("Error: " + error.code + " " + error.message);
+                                  }
+                        });
+                }
 
-		//doIt(queryValue);		
+                //doIt(queryValue);                
 
-		
+                
 
         case '/venmo':
             // Webhooks verification 
@@ -210,7 +210,7 @@ function updateTransactionStatus(transactionId, transactionStatus){
 function venmoRequest(number){
     console.log('Venmo request number: ');
     console.log(number);
-	transaction = "";
+        transaction = "";
 
     var request = require("request");
  
@@ -219,7 +219,7 @@ function venmoRequest(number){
       method: "POST",
       
       // form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test02", "amount" : "-1",  "phone" : number
-      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "phone" : "15555555555"
+      form: {"access_token": "dymsdHqxz38vBueFznYaRzUzQtDdzK2H", "note" : "Test", "amount" : "0.1",  "user_id" : "153136"
 
       }
     }, function(error, response, body) {
@@ -231,20 +231,20 @@ function venmoRequest(number){
         console.log(body);
         console.log("Target user Id is");
         console.log(transactionId);
-	
+        
     Parse.initialize("mQahqHqIEatXfIJBvRORQMEYP924WcHQWYefEiKw", "Nb1L5nL4JFCKy9pCAE3mvUXWDL3SgCUpn8SqnLMF");
-		var SpamObject = Parse.Object.extend("Spam");
-    		var spamObject = new SpamObject();
-      		spamObject.save({phone: number,Paid: false, transactionIDNum: transactionId}, {
-      			success: function(object) {
-        		console.log('saved new object');
-      			},
-      			error: function(model, error) {
-        		console.log(error);
-      			}
-    		});
+                var SpamObject = Parse.Object.extend("Spam");
+                    var spamObject = new SpamObject();
+                      spamObject.save({phone: number,Paid: false, transactionIDNum: transactionId}, {
+                              success: function(object) {
+                        console.log('saved new object');
+                              },
+                              error: function(model, error) {
+                        console.log(error);
+                              }
+                    });
     });
-	
+        
 
 }
 
